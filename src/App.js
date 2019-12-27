@@ -1,12 +1,9 @@
 import React from 'react';
-import './App.css';
+import HomePage from './pages/homepage/homepage.component';
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello world</h1>
-    </div>
-  );
-}
+const App = () => (
+  <HomePage/>
+);
 
 export default App;
