@@ -6,7 +6,7 @@ const MenuItem = ({title, subtitle, size, imageUrl}) => (
     <div
       className='background-image'
       style={{
-        backgroundImage: `url(${imageUrl}?t=${Math.random()})`
+        backgroundImage: `url(${imageUrl}})`
       }}
     />
     <div className="content">
