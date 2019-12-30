@@ -12,8 +12,8 @@ const App = () => (
     <Header />
     <Switch>
       <Route path="/" exact component={HomePage} />
-      <Route path="/shop" exact component={ShopPage} />
-      <Route path="/signin" exact component={SignInPage} />
+      <Route path="/shop" component={ShopPage} />
+      <Route path="/signin" component={SignInPage} />
     </Switch>
   </div>
 );
