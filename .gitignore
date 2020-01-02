@@ -24,3 +24,6 @@ yarn-error.log*
 
 #environment file
 .env
+
+#Firebase object
+firebase.config.js
