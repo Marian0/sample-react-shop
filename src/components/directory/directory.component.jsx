@@ -5,8 +5,8 @@ import SHOP_DATA from '../../database'
 
 class Directory extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       sections: SHOP_DATA
     };
