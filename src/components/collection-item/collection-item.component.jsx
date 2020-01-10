@@ -4,9 +4,7 @@ import CustomButton from 'components/custom-button/custom-button.component';
 import { connect } from 'react-redux';
 import { addItem } from 'redux/cart/cart.actions';
 
-
 const CollectionItem = ({ item, addItem }) => {
-
   const { name, price, imageUrl } = item;
 
   return (
