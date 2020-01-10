@@ -8,7 +8,6 @@ import { createStructuredSelector } from 'reselect';
 
 const CartIcon = ({ itemsCount, toggleHideCart }) => (
   <div className="cart-icon" onClick={() => toggleHideCart()}>
-    {console.log("render")}
     <ShoppingIcon className='shopping-icon' />
     <span className="item-count">{itemsCount}</span>
   </div>
