@@ -1,8 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+
 //Read config from .env file
-console.log(process.env.REACT_APP_FIREBASE_CONFIG_OBJECT);
 const firebaseConfig = JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG_OBJECT);
 
 firebase.initializeApp(firebaseConfig);
