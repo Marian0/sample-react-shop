@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 const defaultButtonStyle = css`
   background-color: black;
   color: white;
+  border: none;
 
   &:hover {
     background-color: white;
@@ -56,11 +57,10 @@ export const StyledCustomButton = styled.button`
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
-  border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
-
+  
   ${getButtonStyles}
 `;
 
