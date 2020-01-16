@@ -31,7 +31,9 @@ const Header = ({ currentUser, hidden }) => (
       </StyledOptionLink>
       {
         currentUser ?
-          <StyledOptionDiv onClick={() => auth.signOut()}>SIGN OUT</StyledOptionDiv>
+          <StyledOptionDiv onClick={() => auth.signOut()} title={`Sign out ${currentUser.email}`}>
+            SIGN OUT
+          </StyledOptionDiv>
           :
           <StyledOptionLink to='/signin'>
             SIGN IN
