@@ -1,27 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormInput from 'components/form-input/form-input.component'
 import CustomButton from 'components/custom-button/custom-button.component'
 import './sign-up.styles.scss';
 import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
 
+const initValues = {
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
-class SignUp extends React.Component {
+const SignUp = () => {
+  const [formValues, setFormValues] = useState(initValues);
+  const { displayName, email, password, confirmPassword } = formValues;
 
-  initValues = {
-    displayName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = this.initValues;
-  }
-
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       alert("Password don't match");
@@ -29,7 +24,6 @@ class SignUp extends React.Component {
     }
 
     try {
-
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password
@@ -37,69 +31,63 @@ class SignUp extends React.Component {
 
       await createUserProfileDocument(user, { displayName });
 
-      this.setState(this.initValues);
-
+      setFormValues(this.initValues);
     } catch (error) {
-
       console.log(error);
-
     }
   }
 
-  handleChange = event => {
+  const handleChange = event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value })
+    setFormValues({ ...formValues, [name]: value })
   }
 
-  render() {
-    const { displayName, email, password, confirmPassword } = this.state;
-    return (
-      <div className='sign-up'>
-        <h2 className='title'>I do not have an account</h2>
-        <span>Sign up with your E-mail and password.</span>
+  return (
+    <div className='sign-up'>
+      <h2 className='title'>I do not have an account</h2>
+      <span>Sign up with your E-mail and password.</span>
 
-        <form className='sign-up-form' onSubmit={this.handleSubmit}>
-          <FormInput
-            type='text'
-            label='Display Name'
-            name='displayName'
-            value={displayName}
-            handleChange={this.handleChange}
-            required
-          />
+      <form className='sign-up-form' onSubmit={handleSubmit}>
+        <FormInput
+          type='text'
+          label='Display Name'
+          name='displayName'
+          value={displayName}
+          handleChange={handleChange}
+          required
+        />
 
-          <FormInput
-            type='email'
-            label='E-mail'
-            name='email'
-            value={email}
-            handleChange={this.handleChange}
-            required
-          />
+        <FormInput
+          type='email'
+          label='E-mail'
+          name='email'
+          value={email}
+          handleChange={handleChange}
+          required
+        />
 
-          <FormInput
-            type='password'
-            label='Password'
-            name='password'
-            value={password}
-            handleChange={this.handleChange}
-            required
-          />
-          <FormInput
-            type='password'
-            label='Confirm Password'
-            name='confirmPassword'
-            value={confirmPassword}
-            handleChange={this.handleChange}
-            required
-          />
-          <div className="buttons">
-            <CustomButton type='submit'>Sign up</CustomButton>
-          </div>
-        </form>
-      </div>
-    )
-  }
+        <FormInput
+          type='password'
+          label='Password'
+          name='password'
+          value={password}
+          handleChange={handleChange}
+          required
+        />
+        <FormInput
+          type='password'
+          label='Confirm Password'
+          name='confirmPassword'
+          value={confirmPassword}
+          handleChange={handleChange}
+          required
+        />
+        <div className="buttons">
+          <CustomButton type='submit'>Sign up</CustomButton>
+        </div>
+      </form>
+    </div>
+  )
 }
 
 export default SignUp;
