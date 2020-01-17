@@ -15,7 +15,7 @@ import { selectCurrentUser } from 'redux/user/user.selector';
 
 const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (!userAuth) {
         setCurrentUser(userAuth);
         return;
@@ -30,6 +30,9 @@ const App = ({ setCurrentUser, currentUser }) => {
       });
 
       setCurrentUser(userAuth);
+      return () => {
+        unsubscribeFromAuth();
+      }
     })
   }, [setCurrentUser])
 
