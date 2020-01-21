@@ -23,6 +23,9 @@
     "reselect": "^4.0.0",
     "styled-components": "^4.4.1"
   },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
