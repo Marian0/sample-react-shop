@@ -6,12 +6,12 @@ import ShopPage from './pages/shop/shop.component';
 import SignInPage from './pages/sign-in/sign-in.component';
 import CheckoutPage from 'pages/checkout/checkout.component';
 
-import './App.scss';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from 'redux/user/user.selector';
+import { GlobalStyle } from './global.styles';
 
 const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
@@ -38,6 +38,7 @@ const App = ({ setCurrentUser, currentUser }) => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route path="/" exact component={HomePage} />

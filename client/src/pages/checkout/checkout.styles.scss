@@ -6,6 +6,11 @@
   align-items: center;
   margin: 50px auto 0;
 
+  @media screen and (max-width: 800px) {
+    margin: 10px auto;
+    width: 90%;
+  }
+
   .checkout-header {
     width: 100%;
     padding: 10px 0;
@@ -28,4 +33,8 @@
     margin-left: auto;
     font-size: 36px;
   }
+}
+
+.empty-cart {
+  text-align: center;
 }
