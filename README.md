@@ -1,6 +1,9 @@
 # Shop APP
 This is a sample shopping app focused on frontend. It also has a very simple NodeJS backend to handle Stripe payments.
 
+## Live preview
+https://mp-shop-app.herokuapp.com/
+
 ## Technologies
 - NodeJS
 - ReactJS
@@ -9,6 +12,7 @@ This is a sample shopping app focused on frontend. It also has a very simple Nod
 - React Hooks
 - Stripe Integration
 - React Router
+- Styled Components
 
 ## Installation
 - clone this repository
