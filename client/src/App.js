@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from 'components/header/header.component';
-import HomePage from './pages/home/home.component';
-import ShopPage from './pages/shop/shop.component';
-import SignInPage from './pages/sign-in/sign-in.component';
-import CheckoutPage from 'pages/checkout/checkout.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
@@ -12,6 +8,12 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from 'redux/user/user.selector';
 import { GlobalStyle } from './global.styles';
+import Spinner from 'components/spinner/spinner.component';
+
+const HomePage = lazy(() => import('./pages/home/home.component'));
+const ShopPage = lazy(() => import('./pages/shop/shop.component'));
+const SignInPage = lazy(() => import('./pages/sign-in/sign-in.component'));
+const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 
 const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
@@ -41,13 +43,15 @@ const App = ({ setCurrentUser, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
-        <Route exact path="/signin" render={() =>
-          currentUser ? <Redirect to='/shop' />
-            : <SignInPage />
-        } />
+        <Suspense fallback={Spinner}>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/signin" render={() =>
+            currentUser ? <Redirect to='/shop' />
+              : <SignInPage />
+          } />
+        </Suspense>
       </Switch>
     </div>
   );
