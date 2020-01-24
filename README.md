@@ -13,6 +13,7 @@ https://mp-shop-app.herokuapp.com/
 - Stripe Integration
 - React Router
 - Styled Components
+- Progressive Web App (PWA)
 
 ## Installation
 - clone this repository
