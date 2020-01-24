@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
+const enforce = require('express-sslify');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -19,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors()); 
 
 if (process.env.NODE_ENV === 'production') {
+  //Force using ssl on production
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
   //use static middleware on production
   //it allows us to serve files inside the url
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -33,6 +37,16 @@ app.listen(port, error => {
   console.log("Error on server port " + port);
 });
 
+/**
+ * Serve compiled service-worker.js
+ */
+app.get('/service-worker.js', (request, response) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
+});
+
+/**
+ * Handle Backend Stripe payments
+ */
 app.post('/payments', function(req, res) {
   const body = {
     source: req.body.token.id,
