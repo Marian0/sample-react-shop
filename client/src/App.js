@@ -45,7 +45,7 @@ const App = ({ setCurrentUser, currentUser }) => {
       <Header />
       <Switch>
         <ErrorBoundary>
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <Route path="/" exact component={HomePage} />
             <Route path="/shop" component={ShopPage} />
             <Route exact path="/checkout" component={CheckoutPage} />
